@@ -18,4 +18,4 @@
   <CustomProperties>    
 	<Property Name="GitHubRepository" Value="https://github.com/WindowsAzure-TrainingKit/HOL-IntroSQLAzureDatabase" />
   </CustomProperties>
-</Lab>
+</Lab> 
