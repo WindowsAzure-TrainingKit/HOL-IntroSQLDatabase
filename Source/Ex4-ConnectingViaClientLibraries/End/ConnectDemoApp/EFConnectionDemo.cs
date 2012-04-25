@@ -7,21 +7,21 @@ namespace ConnectDemoApp
 {
     public class EFConnectionDemo
     {
-
         /// <summary>
         /// HolTestDBEntities takes care of handling your transactions for you
         /// leaving you free use Linq to extract information stores up in th cloud
         /// </summary>
         public void ConnectToSQLAzureDemo()
         {
-            HolTestDBEntities context = new HolTestDBEntities();
-
-            IQueryable<string> companyNames = from customer in context.Customers
-                                              where customer.CustomerID < 20
-                                              select customer.CompanyName;
-            foreach (var company in companyNames)
+            using (HolTestDBEntities context = new HolTestDBEntities())
             {
-                Console.WriteLine(company);
+                IQueryable<string> companyNames = from customer in context.Customers
+                                                  where customer.CustomerID < 20
+                                                  select customer.CompanyName;
+                foreach (var company in companyNames)
+                {
+                    Console.WriteLine(company);
+                }
             }
         }
     }

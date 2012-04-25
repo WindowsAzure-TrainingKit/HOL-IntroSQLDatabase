@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="AdoConnectionDemo.cs" />
     <Compile Include="EFConnectionDemo.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HoLModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

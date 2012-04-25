@@ -644,11 +644,10 @@ In this task, you will open the **ConnectDemoApp** solution and explore the **SQ
 
 	| **Method** | **Type** | **Description** |
 	|------------|----------|-----------------|
-	|Class Constructor |    |Sets the connection property based on the result of the CreateConnection abstract method that will be implemented on the derived class.|
 	|CreateConnection  |Abstract|A derived class implements this method in order to create the connection according to the underlying technology.|
 	|CreateCommand     |Abstract|A derived class implements this method to create a command according to the underlying technology.|
 	|GetServerName     |    |Returns the server name from the data source. It is a common task required to create the connection to the database.|
-	|ConnectToSQLAzureDemo| |Executes the demo flow against the SQL Azure Database. It gets a command from the derived class using the CreateCommand method and then executes the Execute* methods to create, fill, query and delete a demo table.|
+	|ConnectToSQLAzureDemo| |Sets the connection property based on the result of the CreateConnection abstract method that will be implemented on the derived class. Executes the demo flow against the SQL Azure Database. It gets a command from the derived class using the CreateCommand method and then executes the Execute* methods to create, fill, query and delete a demo table.|
 	|ExecuteCreateDemoTableStatement||Executes a create table statement to create the "DemoTable" table.|
 	|ExecuteInsertTestDataStatement||Executes an insert statement against the "DemoTable" table.|
 	|ExecuteReadInsertedTestData||Executes a select statement trying to retrieve the data inserted by the previous method and calls the ReadData method to show it in the Console.|
@@ -671,23 +670,11 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 	using System.Data.SqlClient;
 	````
  
-1. Update the class definition to make it public and to inherit from **SQLAzureConnectionDemo**. The final implementation should look like the following:
+1. Update the class definition to inherit from **SQLAzureConnectionDemo**. It should look like the following:
 	
 	<!-- mark: 1 -->
 	````C#
 	public class AdoConnectionDemo : SQLAzureConnectionDemo
-	{
-	}
-	````
-	
-1. Implement the class constructor to retrieve the connection information and pass it as parameters to the base class constructor:
-	
-	(Code Snippet - _Intro to SQL Azure - Ex4 ADO constructor - C#_)
-	
-	<!-- mark: 1-4-->
-	````C#
-	public AdoConnectionDemo(string userName, string password, string dataSource, string databaseName)
-	  : base(userName, password, dataSource, databaseName)
 	{
 	}
 	````
@@ -700,7 +687,7 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 	````C#
 	protected override DbConnection CreateConnection(string userName, string password, string dataSource, string databaseName)
 	{
-	  return new SqlConnection(CreateAdoConnectionString(userName, password, dataSource, databaseName));
+	  return new SqlConnection(this.CreateAdoConnectionString(userName, password, dataSource, databaseName));
 	}
 	````
 	
@@ -749,10 +736,10 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 	````C#
 	static void Main(string[] args)
 	{
-	  //Invoke the ADO.NET connection demo
+	  // Invoke the ADO.NET connection demo
 	  Console.WriteLine("Starting the ADO.NET Connection Demo...");
-	  AdoConnectionDemo demo1 = new AdoConnectionDemo(userName, password, datasource, databaseName);
-	  demo1.ConnectToSQLAzureDemo();
+	  AdoConnectionDemo demo1 = new AdoConnectionDemo();
+	  demo1.ConnectToSQLAzureDemo(userName, password, datasource, databaseName);
 	  Console.WriteLine("Demo Complete... Press any key");
 	  Console.ReadKey();
 	}
@@ -784,23 +771,11 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 	using System.Data.Odbc;
 	````
 
-1. Update the class definition to make it public and to inherit from **SQLAzureConnectionDemo**. The final implementation should look like the following:
+1. Update the class definition to inherit from **SQLAzureConnectionDemo**. It should look like the following:
 
 	<!-- mark: 1 -->
 	````C#
 	public class OdbcConnectionDemo : SQLAzureConnectionDemo
-	{
-	}
-	````
-	
-1. Implement the class constructor to get the connection information and pass it as parameters to the base class constructor:
-	
-	(Code Snippet - _Intro to SQL Azure - Ex4 ODBC constructor - C#_)
-	
-	<!-- mark: 1-4-->
-	````C#
-	public OdbcConnectionDemo(string userName, string password, string dataSource, string databaseName):
-	  base (userName, password, dataSource, databaseName)
 	{
 	}
 	````
@@ -813,7 +788,7 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 	````C#
 	protected override DbConnection CreateConnection(string userName, string password, string dataSource, string databaseName)
 	{
-	  return new OdbcConnection(CreateOdbcConnectionString(userName, password, dataSource, databaseName));
+	  return new OdbcConnection(this.CreateOdbcConnectionString(userName, password, dataSource, databaseName));
 	}
 	````
 	
@@ -859,16 +834,16 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 	
 	(Code Snippet - _Intro to SQL Azure - Ex4 ODBC demo implementation - C#_)
 	
-	<!-- mark: 5-11 -->
+	<!-- mark: 5-10 -->
 	````C#
 	static void Main(string[] args)
 	{
 	  //...
 	
-	  //Invoke the ODBC connection demo
+	  // Invoke the ODBC connection demo
 	  Console.WriteLine("Starting the ODBC Connection Demo...");
-	  OdbcConnectionDemo demo2 = new OdbcConnectionDemo(userName, password, datasource, databaseName);
-	  demo2.ConnectToSQLAzureDemo();
+	  OdbcConnectionDemo demo2 = new OdbcConnectionDemo();
+	  demo2.ConnectToSQLAzureDemo(userName, password, datasource, databaseName);
 	  Console.WriteLine("Demo Complete... Press any key");
 	  Console.ReadKey();
 	}
@@ -897,23 +872,11 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 	using System.Data.OleDb;
 	```` 
 	
-1. Update the class definition to make it public and to inherit from **SQLAzureConnectionDemo**. It should look like the following:
+1. Update the class definition to inherit from **SQLAzureConnectionDemo**. It should look like the following:
 	
 	<!-- mark: 1 -->
 	````C#
 	public class OleDbConnectionDemo : SQLAzureConnectionDemo
-	{
-	}
-	````
-	
-1. Implement the class constructor to get the connection information and pass it as parameters to the base class constructor:
-	
-	(Code Snippet - _Intro to SQL Azure - Ex4 OLEDB constructor - C#_)
-	
-	<!-- mark: 1-4 -->
-	````C#
-	public OleDbConnectionDemo(string userName, string password, string dataSource, string databaseName)
-	  : base(userName, password, dataSource, databaseName)
 	{
 	}
 	````
@@ -926,7 +889,7 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 	```` C#
 	protected override DbConnection CreateConnection(string userName, string password, string dataSource, string databaseName)
 	{
-	  return new OleDbConnection(CreateOleDBConnectionString(userName, password, dataSource, databaseName));
+	  return new OleDbConnection(this.CreateOleDBConnectionString(userName, password, dataSource, databaseName));
 	}
 	````
 	
@@ -934,7 +897,7 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 	
 	(Code Snippet - _Intro to SQL Azure - Ex4 OLEDB CreateOleDbConnectionString method - C#_)
 	
-	<!-- mark: 1-16 -->
+	<!-- mark: 1-15 -->
 	````C#
 	private string CreateOleDBConnectionString(string userName, string password, string dataSource, string databaseName)
 	{
@@ -978,10 +941,10 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 	{
 	  //...
 	
-	  //Invoke the OleDB connection demo
+	  // Invoke the OleDB connection demo
 	  Console.WriteLine("Starting the OLEDB Connection Demo…");
-	  OleDbConnectionDemo demo3 = new OleDbConnectionDemo(userName, password, datasource, databaseName);
-	  demo3.ConnectToSQLAzureDemo();
+	  OleDbConnectionDemo demo3 = new OleDbConnectionDemo();
+	  demo3.ConnectToSQLAzureDemo(userName, password, datasource, databaseName);
 	  Console.WriteLine("Demo Complete... Press any key");
 	  Console.ReadKey();
  	}
@@ -1034,15 +997,6 @@ You have connected in three different ways to the database on SQL Azure. The las
 	_EF model created_
 
 1. Add a new class to the project named **EFConnectionDemo**. To do this, right-click the **ConnectDemoApp** project in **Solution** **Explorer** and select **Add** | **Class**. In the **Add** **New** **Item** dialog, make sure you select the **Class** template and then set the name to **EFConnectionDemo.cs**.
-
-1. Update the class definition to make it public. It should look like the following:
-	
-	<!-- mark: 1 -->
-	````C#
-	public class EFConnectionDemo 
-	{
-	}
-	````
 	
 1. Make sure that you have the following namespace directives at the top of the class:
 	
@@ -1064,16 +1018,17 @@ You have connected in three different ways to the database on SQL Azure. The las
 	/// </summary>
 	public void ConnectToSQLAzureDemo()
 	{
-	  HolTestDbEntities context = new HolTestDbEntities();
-	
-	  IQueryable<string> companyNames = from customer in context.Customers
-	    where customer.CustomerID < 20
-	    select customer.CompanyName;
-	            
-	  foreach (var company in companyNames)
-	  {
-	    Console.WriteLine(company);
-	  }
+	  using (HolTestDBEntities context = new HolTestDBEntities())
+	  {	
+		  IQueryable<string> companyNames = from customer in context.Customers
+		    where customer.CustomerID < 20
+		    select customer.CompanyName;
+		            
+		  foreach (var company in companyNames)
+		  {
+		    Console.WriteLine(company);
+		  }
+	   }
 	}
 	````
       
@@ -1087,12 +1042,12 @@ You have connected in three different ways to the database on SQL Azure. The las
 	{
 	  //...
 	
-	  //Invoke the Entity Framework connection demo
-	    Console.WriteLine("Starting the Entity Framework Connection Demo...");
-	    EFConnectionDemo demo4 = new EFConnectionDemo();
-	    demo4.ConnectToSQLAzureDemo();
-	    Console.WriteLine("Demo Complete... Press any key");
-	    Console.ReadKey();
+	  // Invoke the Entity Framework connection demo
+	  Console.WriteLine("Starting the Entity Framework Connection Demo...");
+	  EFConnectionDemo demo4 = new EFConnectionDemo();
+	  demo4.ConnectToSQLAzureDemo();
+	  Console.WriteLine("Demo Complete... Press any key");
+	  Console.ReadKey();
 	}
 	````
 	

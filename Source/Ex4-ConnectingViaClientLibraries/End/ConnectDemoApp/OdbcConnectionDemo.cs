@@ -9,14 +9,14 @@ namespace ConnectDemoApp
 {
     public class OdbcConnectionDemo : SQLAzureConnectionDemo
     {
-        public OdbcConnectionDemo(string userName, string password, string dataSource, string databaseName) :
-            base(userName, password, dataSource, databaseName)
-        {
-        }
-
         protected override DbConnection CreateConnection(string userName, string password, string dataSource, string databaseName)
         {
-            return new OdbcConnection(CreateOdbcConnectionString(userName, password, dataSource, databaseName));
+            return new OdbcConnection(this.CreateOdbcConnectionString(userName, password, dataSource, databaseName));
+        }
+
+        protected override DbCommand CreateCommand(DbConnection connection)
+        {
+            return new OdbcCommand() { Connection = connection as OdbcConnection };
         }
 
         private string CreateOdbcConnectionString(string userName, string password, string dataSource, string databaseName)
@@ -33,11 +33,5 @@ namespace ConnectDemoApp
             connectionStringBuilder["Pwd"] = password;
             return connectionStringBuilder.ConnectionString;
         }
-
-        protected override DbCommand CreateCommand(DbConnection connection)
-        {
-            return new OdbcCommand() { Connection = connection as OdbcConnection };
-        }
-
     }
 }

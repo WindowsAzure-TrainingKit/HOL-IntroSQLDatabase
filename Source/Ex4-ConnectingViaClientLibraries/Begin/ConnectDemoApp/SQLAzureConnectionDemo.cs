@@ -9,9 +9,17 @@ namespace ConnectDemoApp
     {
         private DbConnection connection = null;
 
-        public SQLAzureConnectionDemo(string userName, string password, string dataSource, string databaseName)
+        public void ConnectToSQLAzureDemo(string userName, string password, string dataSource, string databaseName)
         {
-            this.connection = CreateConnection(userName, password, dataSource, databaseName);
+            this.connection = this.CreateConnection(userName, password, dataSource, databaseName);
+            this.connection.Open();
+            DbCommand command = this.CreateCommand(this.connection);
+
+            this.ExecuteCreateDemoTableStatement(command);
+            this.ExecuteInsertTestDataStatement(command);
+            this.ExecuteReadInsertedTestData(command);
+            this.ExecuteDropDemoTable(command);
+            this.connection.Close();
         }
 
         protected abstract DbConnection CreateConnection(string userName, string password, string dataSource, string databaseName);
@@ -27,19 +35,6 @@ namespace ConnectDemoApp
         protected string GetServerName(string dataSource)
         {
             return dataSource.Split('.')[0];
-        }
-
-
-        public void ConnectToSQLAzureDemo()
-        {
-            connection.Open();
-            DbCommand command = CreateCommand(connection);
-
-            ExecuteCreateDemoTableStatement(command);
-            ExecuteInsertTestDataStatement(command);
-            ExecuteReadInsertedTestData(command);
-            ExecuteDropDemoTable(command);
-            connection.Close();
         }
 
         /// <summary>
@@ -69,7 +64,6 @@ namespace ConnectDemoApp
                 command.CommandText = commandText;
 
                 command.ExecuteNonQuery();
-
             }
 
             Console.WriteLine("Done..");
@@ -90,7 +84,7 @@ namespace ConnectDemoApp
 
             command.CommandText = selectText;
 
-            ReadData(command.ExecuteReader());
+            this.ReadData(command.ExecuteReader());
         }
 
         /// <summary>
@@ -106,12 +100,13 @@ namespace ConnectDemoApp
                 for (int col = 0; col < reader.FieldCount; col++)
                 {
                     row.Append(reader.GetName(col) + ":" + reader.GetValue(col) + "  |  ");
-               }
+                }
+
                 Console.WriteLine(row.ToString());
             }
+
             reader.Close();
         }
-
 
         /// <summary>
         /// Drops the DemoTable.
@@ -124,6 +119,5 @@ namespace ConnectDemoApp
             command.CommandText = "DROP TABLE DemoTable";
             command.ExecuteNonQuery();
         }
-
     }
 }
