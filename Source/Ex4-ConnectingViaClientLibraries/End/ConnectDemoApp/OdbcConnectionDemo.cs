@@ -25,7 +25,7 @@ namespace ConnectDemoApp
 
             OdbcConnectionStringBuilder connectionStringBuilder = new OdbcConnectionStringBuilder
             {
-                Driver = "SQL Server Native Client 10.0",
+                Driver = "SQL Server Native Client 11.0",
             };
             connectionStringBuilder["Server"] = "tcp:" + dataSource;
             connectionStringBuilder["Database"] = databaseName;
