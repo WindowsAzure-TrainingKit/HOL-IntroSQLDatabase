@@ -5,11 +5,11 @@ using System.Text;
 
 namespace ConnectDemoApp
 {
-    public abstract class SQLAzureConnectionDemo
+    public abstract class SQLDatabaseConnectionDemo
     {
         private DbConnection connection = null;
 
-        public void ConnectToSQLAzureDemo(string userName, string password, string dataSource, string databaseName)
+        public void ConnectToSQLDatabase(string userName, string password, string dataSource, string databaseName)
         {
             this.connection = this.CreateConnection(userName, password, dataSource, databaseName);
             this.connection.Open();

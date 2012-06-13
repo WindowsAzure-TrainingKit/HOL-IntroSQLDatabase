@@ -51,7 +51,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="SQLAzureConnectionDemo.cs" />
+    <Compile Include="SQLDatabaseConnectionDemo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

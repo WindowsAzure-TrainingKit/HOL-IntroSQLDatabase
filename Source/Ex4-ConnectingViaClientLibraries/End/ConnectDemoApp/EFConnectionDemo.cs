@@ -11,7 +11,7 @@ namespace ConnectDemoApp
         /// HolTestDBEntities takes care of handling your transactions for you
         /// leaving you free use Linq to extract information stores up in th cloud
         /// </summary>
-        public void ConnectToSQLAzureDemo()
+        public void ConnectToSQLDatabase()
         {
             using (HolTestDBEntities context = new HolTestDBEntities())
             {
