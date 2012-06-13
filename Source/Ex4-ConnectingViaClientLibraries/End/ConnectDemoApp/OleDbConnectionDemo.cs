@@ -7,7 +7,7 @@ using System.Data.OleDb;
 
 namespace ConnectDemoApp
 {
-    public class OleDbConnectionDemo : SQLAzureConnectionDemo
+    public class OleDbConnectionDemo : SQLDatabaseConnectionDemo
     {
         protected override DbConnection CreateConnection(string userName, string password, string dataSource, string databaseName)
         {

@@ -7,7 +7,7 @@ using System.Data.Odbc;
 
 namespace ConnectDemoApp
 {
-    public class OdbcConnectionDemo : SQLAzureConnectionDemo
+    public class OdbcConnectionDemo : SQLDatabaseConnectionDemo
     {
         protected override DbConnection CreateConnection(string userName, string password, string dataSource, string databaseName)
         {

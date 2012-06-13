@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace ConnectDemoApp
 {
-    public class AdoConnectionDemo : SQLAzureConnectionDemo
+    public class AdoConnectionDemo : SQLDatabaseConnectionDemo
     {
         protected override DbConnection CreateConnection(string userName, string password, string dataSource, string databaseName)
         {

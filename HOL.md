@@ -74,7 +74,7 @@ This hands-on lab includes the following exercises:
 1. [Preparing Your SQL Database Account](#Exercise1)
 1. [Basic DDL and DML - Creating Tables and Indexes](#Exercise2)
 1. [Build a Windows Azure Application that Accesses SQL Database](#Exercise3)
-1. [Connecting via Client Libraires](#Exercise4)
+1. [Connecting via Client Libraries](#Exercise4)
 
 Estimated time to complete this lab: **60 minutes**.
 
@@ -126,7 +126,7 @@ In this task, you will log into the SQL Database portal to obtain the name of th
 
 	![SQL Database server list](images/sqlazureprojectslist.png?raw=true)
 
-	_SQL Database servers list_ 
+	_SQL Database server list_ 
 
 	>**Note:** The fully qualified domain name of the server uses the following format:
      _\<ServerName\>.database.windows.net_ where _\<ServerName\>_ identifies the server, for example, _plin17p2v1.database.windows.net_.
@@ -137,7 +137,7 @@ In this task, you will log into the SQL Database portal to obtain the name of th
 
 	_SQL Server Information Page_
 
-1. Click **Configure**  from the top menu to setup firewall rules for the server.
+1. Click **Configure** from the top menu to setup firewall rules for the server.
 	 
 	![SQL Server allowed IP addresses](images/sql-azure-server-allowed-ip-addresses.png?raw=true)
 
@@ -201,6 +201,8 @@ In this task, you use the Database Manager for SQL Azure, a Silverlight client t
 	_Signing in to the SQL Azure Management Portal_ 
 
 1. Wait until you are connected to your database and the **Administration** page is shown.
+
+1. Select the **HoLTestDB** database on the left pane.
 
 	![SQLAzureManagementPortalAdministrationPage](images/sqlazuremanagementportaladministrationpage.png?raw=true)
 
@@ -271,7 +273,7 @@ In this task, you use the Database Manager for SQL Azure, a Silverlight client t
 #### Task 3 - Managing your Database with SQL Server Management Studio ####
 In this task, you use SQL Server Management Studio, a tool typically used for managing SQL Server, to connect to your SQL Database server and administer it.
 
-1. Open SQL Server Management Studio from **Start | All Programs | Microsoft SQL Server 2008 R2 | SQL Server Management Studio**. You will be presented with a logon dialog.
+1. Open SQL Server Management Studio from **Start | All Programs | Microsoft SQL Server 2012 | SQL Server Management Studio**. You will be presented with a logon dialog.
 1. In the **Connect to Server** dialog, enter your login information ensuring that you select **SQL Server Authentication**. SQL Database currently only supports SQL Server Authentication. 
 	
 	![ConnectingSQLAzureSSMS](images/connectingsqlazuressms.png?raw=true)
@@ -479,7 +481,7 @@ Much like SQL Server, SQL Database allows you to create additional logins and th
 	
 	>**Note:** Notice that the second time around the query optimizer is likely to use the index that you defined: This is the Index Seek line in the query plan.
 	
-1. For the most part, you can use any tool that you might have previously used with SQL Server on-premises. For an example of this, look at the query plan graphically. In SQL Server Management Studio press **Ctrl-L** to display the **Estimated Execution Plan**.
+1. For the most part, you can use any tool that you might have previously used with SQL Server on-premises. For an example of this, look at the query plan graphically. In SQL Server Management Studio, press **Ctrl-L** to display the **Estimated Execution Plan**.
 	 
 	![ShowingQueryExecutionPlanGraphically](images/showingqueryexecutionplangraphically.png?raw=true)
 
@@ -626,7 +628,7 @@ Using Microsoft Technologies, you will see that the way in which you interact wi
 
 You will test the different Microsoft technologies connecting to SQL Database and performing some tasks against a new table. To avoid spending time implementing logic that creates, inserts, queries and deletes a table, this exercise provides a begin solution that implements these common functionalities. This allows you to focus on learning how to connect to SQL Database and explore the differences between the proposed technologies. 
 
-In this task, you will open the **ConnectDemoApp** solution and explore the **SQLAzureConnectionDemo** class. During the exercise, you will inherit from this class for each different implementation of a data access technology.
+In this task, you will open the **ConnectDemoApp** solution and explore the **SQLDatabaseConnectionDemo** class. During the exercise, you will inherit from this class for each different implementation of a data access technology.
 
 1. Open **Microsoft Visual Studio 2010** from **Start** | **All Programs** | **Microsoft Visual Studio 2010** | **Microsoft Visual Studio 2010**.
 
@@ -636,14 +638,14 @@ In this task, you will open the **ConnectDemoApp** solution and explore the **SQ
 
 	_Connect Demo App solution’s structure_ 
 	 
-1. As mentioned before, you will create a class per technology inheriting from the **SQLAzureConnectionDemo** abstract class. This class provides common functionality to perform basic operations against SQL Database using the provider that you  implement in the derived class. The table below explains each of the methods in this class to understand how it works and determine which methods you need to implement in the derived classes: 
+1. As mentioned before, you will create a class per technology inheriting from the **SQLDatabaseConnectionDemo** abstract class. This class provides common functionality to perform basic operations against SQL Database using the provider that you  implement in the derived class. The table below explains each of the methods in this class to understand how it works and determine which methods you need to implement in the derived classes: 
 
 	| **Method** | **Type** | **Description** |
 	|------------|----------|-----------------|
 	|CreateConnection  |Abstract|A derived class implements this method in order to create the connection according to the underlying technology.|
 	|CreateCommand     |Abstract|A derived class implements this method to create a command according to the underlying technology.|
 	|GetServerName     |    |Returns the server name from the data source. It is a common task required to create the connection to the database.|
-	|ConnectToSQLAzureDemo| |Sets the connection property based on the result of the CreateConnection abstract method that will be implemented on the derived class. Executes the demo flow against the SQL Database. It gets a command from the derived class using the CreateCommand method and then executes the Execute* methods to create, fill, query and delete a demo table.|
+	|ConnectToSQLDatabase | |Sets the connection property based on the result of the CreateConnection abstract method that will be implemented on the derived class. Executes the demo flow against the SQL Database. It gets a command from the derived class using the CreateCommand method and then executes the Execute* methods to create, fill, query and delete a demo table.|
 	|ExecuteCreateDemoTableStatement||Executes a create table statement to create the "DemoTable" table.|
 	|ExecuteInsertTestDataStatement||Executes an insert statement against the "DemoTable" table.|
 	|ExecuteReadInsertedTestData||Executes a select statement trying to retrieve the data inserted by the previous method and calls the ReadData method to show it in the Console.|
@@ -654,7 +656,7 @@ In this task, you will open the **ConnectDemoApp** solution and explore the **SQ
 
 <a name="Ex4Task2" />
 #### Task 2 - Connecting to SQL Database Using ADO.NET ####
-In this task, you will create a class that inherits from the **SQLAzureConnectionDemo** class and implements the methods to connect to SQL Database using ADO.NET.
+In this task, you will create a class that inherits from the **SQLDatabaseConnectionDemo** class and implements the methods to connect to SQL Database using ADO.NET.
 
 1. Add a new class to the project named **AdoConnectionDemo**. To do this, right-click the **ConnectDemoApp** project in **Solution Explorer** and select **Add** | **Class**. In the **Add New Item** dialog, make sure that you select the **Class** template and set the name to **AdoConnectionDemo.cs**.
 
@@ -666,16 +668,16 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 	using System.Data.SqlClient;
 	````
  
-1. Update the class definition to inherit from **SQLAzureConnectionDemo**. It should look like the following:
+1. Update the class definition to inherit from **SQLDatabaseConnectionDemo**. It should look like the following:
 	
 	<!-- mark: 1 -->
 	````C#
-	public class AdoConnectionDemo : SQLAzureConnectionDemo
+	public class AdoConnectionDemo : SQLDatabaseConnectionDemo
 	{
 	}
 	````
 	
-1. The **SQLAzureConnectionDemo** class delegates the connection construction to the derived class. Override the **CreateConnection** method to create a **SqlConnection** in your **AdoConnectionDemo** class:
+1. The **SQLDatabaseConnectionDemo** class delegates the connection construction to the derived class. Override the **CreateConnection** method to create a **SQLDatabaseConnection** in your **AdoConnectionDemo** class:
 	
 	(Code Snippet - _WindowsAzureSQLDatabase - Ex4 ADO CreateConnection - C#_)
 	
@@ -735,7 +737,7 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 	  // Invoke the ADO.NET connection demo
 	  Console.WriteLine("Starting the ADO.NET Connection Demo...");
 	  AdoConnectionDemo demo1 = new AdoConnectionDemo();
-	  demo1.ConnectToSQLAzureDemo(userName, password, datasource, databaseName);
+	  demo1.ConnectToSQLDatabase(userName, password, datasource, databaseName);
 	  Console.WriteLine("Demo Complete... Press any key");
 	  Console.ReadKey();
 	}
@@ -755,7 +757,7 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 
 <a name="Ex4Task3" />
 #### Task 3 - Connecting to SQL Database Using ODBC ####
-In this task, you will create a class that inherits from the **SQLAzureConnectionDemo** class and implement the methods for connecting to SQL Database using ODBC.
+In this task, you will create a class that inherits from the **SQLDatabaseConnectionDemo** class and implement the methods for connecting to SQL Database using ODBC.
 
 1. Add a new class to the project named **OdbcConnectionDemo**. To do this, right-click the **ConnectDemoApp** project in **Solution Explorer** and select **Add** | **Class**. In the **Add New Item** dialog, make sure that you select the **Class** template and set the name to **OdbcConnectionDemo.cs**.
 
@@ -767,11 +769,11 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 	using System.Data.Odbc;
 	````
 
-1. Update the class definition to inherit from **SQLAzureConnectionDemo**. It should look like the following:
+1. Update the class definition to inherit from **SQLDatabaseConnectionDemo**. It should look like the following:
 
 	<!-- mark: 1 -->
 	````C#
-	public class OdbcConnectionDemo : SQLAzureConnectionDemo
+	public class OdbcConnectionDemo : SQLDatabaseConnectionDemo
 	{
 	}
 	````
@@ -839,7 +841,7 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 	  // Invoke the ODBC connection demo
 	  Console.WriteLine("Starting the ODBC Connection Demo...");
 	  OdbcConnectionDemo demo2 = new OdbcConnectionDemo();
-	  demo2.ConnectToSQLAzureDemo(userName, password, datasource, databaseName);
+	  demo2.ConnectToSQLDatabase(userName, password, datasource, databaseName);
 	  Console.WriteLine("Demo Complete... Press any key");
 	  Console.ReadKey();
 	}
@@ -856,7 +858,7 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 <a name="Ex4Task4" />
 #### Task 4 - Connecting to SQL Database Using OLEDB ####
 
-In this task, you will create a class that inherits from the **SQLAzureConnectionDemo** class and implements the methods for connecting to SQL Database using OLEDB.
+In this task, you will create a class that inherits from the **SQLDatabaseConnectionDemo** class and implements the methods for connecting to SQL Database using OLEDB.
 
 1. Add a new class to the project named **OleDbConnectionDemo**. To do this, right-click the **ConnectDemoApp** project in **Solution** **Explorer** and select **Add** | **Class**. In the **Add** **New** **Item** dialog, make sure to select the **Class** template and set the name to **OleDbConnectionDemo.cs**.
 
@@ -868,11 +870,11 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 	using System.Data.OleDb;
 	```` 
 	
-1. Update the class definition to inherit from **SQLAzureConnectionDemo**. It should look like the following:
+1. Update the class definition to inherit from **SQLDatabaseConnectionDemo**. It should look like the following:
 	
 	<!-- mark: 1 -->
 	````C#
-	public class OleDbConnectionDemo : SQLAzureConnectionDemo
+	public class OleDbConnectionDemo : SQLDatabaseConnectionDemo
 	{
 	}
 	````
@@ -940,7 +942,7 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 	  // Invoke the OleDB connection demo
 	  Console.WriteLine("Starting the OLEDB Connection Demo…");
 	  OleDbConnectionDemo demo3 = new OleDbConnectionDemo();
-	  demo3.ConnectToSQLAzureDemo(userName, password, datasource, databaseName);
+	  demo3.ConnectToSQLDatabase(userName, password, datasource, databaseName);
 	  Console.WriteLine("Demo Complete... Press any key");
 	  Console.ReadKey();
  	}
@@ -956,7 +958,7 @@ In this task, you will create a class that inherits from the **SQLAzureConnectio
 
 <a name="Ex4Task5" />
 #### Task 5 - Connecting to SQL Database Using Entity Framework ####
-You have connected in three different ways to the database on SQL Database. The last technology that you are going to try will be **Entity Framework**. You will notice that the class implementation for this demo will not inherit from the **SQLAzureConnectionDemo** class because when using **Entity Framework**, you do not have to manage Connections and Commands; those are administered by the underlying technology and you do not have to worry about them.
+You have connected in three different ways to the database on SQL Database. The last technology that you are going to try will be **Entity Framework**. You will notice that the class implementation for this demo will not inherit from the **SQLDatabaseConnectionDemo** class because when using **Entity Framework**, you do not have to manage Connections and Commands; those are administered by the underlying technology and you do not have to worry about them.
 
 1. Open the **App.config** file and change the connection string to point to your SQL Database, and to connect using the test user created earlier in this lab.
 	
@@ -1004,15 +1006,15 @@ You have connected in three different ways to the database on SQL Database. The 
 	
 1. Add the following method to the **EFConnectionDemo** class. This retrieves from the database all the company names and prints them to the console. To do that, it takes advantage of the EF **HolTestDBEntities** class.
 	
-	(Code Snippet - _WindowsAzureSQLDatabase - Ex4 EF ConnectToSQLAzure method - C#_)
+	(Code Snippet - _WindowsAzureSQLDatabase - Ex4 EF ConnectToSQLDatabase method - C#_)
 	
-	<!-- mark: 1-17-->
+	<!-- mark: 1-18-->
 	````C#
 	/// <summary>
 	/// HolTestDbEntities takes care of handling your transactions for you
 	/// leaving you free use Linq to extract information stores up in the cloud
 	/// </summary>
-	public void ConnectToSQLAzureDemo()
+	public void ConnectToSQLDatabase()
 	{
 	  using (HolTestDBEntities context = new HolTestDBEntities())
 	  {	
@@ -1041,7 +1043,7 @@ You have connected in three different ways to the database on SQL Database. The 
 	  // Invoke the Entity Framework connection demo
 	  Console.WriteLine("Starting the Entity Framework Connection Demo...");
 	  EFConnectionDemo demo4 = new EFConnectionDemo();
-	  demo4.ConnectToSQLAzureDemo();
+	  demo4.ConnectToSQLDatabase();
 	  Console.WriteLine("Demo Complete... Press any key");
 	  Console.ReadKey();
 	}
@@ -1115,7 +1117,7 @@ sqlConn.close();
 
 In this lab, you have looked at the basics of working with SQL Database. If you have any SQL Server experience, you may have found the lab familiar and that is, indeed, the point. Working with SQL Database should be very familiar to anyone who has worked with SQL Server.
 
-You learned to create new databases, logins and users for those databases. You saw that for the most part, you could simply create objects in SQL Database as you would with an on-premises SQL Server. 
+You learned to create new databases, logins and users for those databases. You saw that for the most part, you could simply create objects in SQL Database as you would with an on-premise SQL Server. 
 
 In addition, you created a simple Windows Azure application that is able to consume a SQL Database. 
 
