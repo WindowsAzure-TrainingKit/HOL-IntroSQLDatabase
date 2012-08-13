@@ -1,16 +1,16 @@
-﻿<a name="HOLTop" />
+﻿<a name="HOLTop"></a>
 # Introduction to Windows Azure SQL Database #
 
 ---
 
-<a name="Overview" />
+<a name="Overview"></a>
 ## Overview ##
 
 SQL Database makes the power of Microsoft SQL Server available in a Cloud Hosted offering. Working with SQL Database should be a familiar experience for most developers because, for the most part, it supports the same tooling and development practices currently used for on premises SQL Server applications.
 
 This hands-on lab will walk through a series of simple use cases for SQL Database such as provisioning your account, creating, and using a database. You will create a simple Windows Azure application to allow you to manipulate the data in the Contact table of a database running in SQL Database.
 
-<a name="Objectives" />
+<a name="Objectives"></a>
 ### Objectives ###
 
 In this hands-on lab, you will learn how to:
@@ -22,7 +22,7 @@ In this hands-on lab, you will learn how to:
 -	Build a simple data driven ASP.NET page using the graphical controls in Visual Studio.
 -	Connect to SQL Database via Client Libraries. 
 
-<a name="Prerequisites" />
+<a name="Prerequisites"></a>
 ### Prerequisites ###
 
 The following is required to complete this hands-on lab:
@@ -34,7 +34,7 @@ The following is required to complete this hands-on lab:
 - [Windows Azure Tools for Microsoft Visual Studio 1.7][4]
 - Access to a **SQL Database** account with a server created
 - **SQL Database Firewall** enabled for machine running this lab
-- A Windows Azure subscription - you can sign up for free trial [here](http://bit.ly/WindowsAzureFreeTrial)
+- A Windows Azure subscription - [sign up for a free trial](http://aka.ms/WATK-FreeTrial)
 
 [1]: http://go.microsoft.com/fwlink/?linkid=186916
 [2]: http://msdn.microsoft.com/vstudio/products/
@@ -44,7 +44,7 @@ The following is required to complete this hands-on lab:
 
 >**Note:** This lab was designed to use Windows 7 Operating System.
 
-<a name="Setup" />
+<a name="Setup"></a>
 ### Setup ###
 
 In order to execute the exercises in this hands-on lab you need to set up your environment.
@@ -57,7 +57,7 @@ In order to execute the exercises in this hands-on lab you need to set up your e
 
 > **Note:** Make sure you have checked all the dependencies for this lab before running the setup. 
 
-<a name="CodeSnippets" />
+<a name="CodeSnippets"></a>
 ### Using the Code Snippets ###
 
 Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of that code is provided as Visual Studio Code Snippets, which you can use from within Visual Studio 2010 to avoid having to add it manually.
@@ -66,7 +66,7 @@ Throughout the lab document, you will be instructed to insert code blocks. For y
 
 ---
 
-<a name="Exercises" />
+<a name="Exercises"></a>
 ## Exercises ##
 
 This hands-on lab includes the following exercises:
@@ -80,12 +80,12 @@ Estimated time to complete this lab: **60 minutes**.
 
 > **Note:** When you first start Visual Studio, you must select one of the predefined settings collections. Every predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the **General Development Settings** collection. If you choose a different settings collection for your development environment, there may be differences in these procedures that you need to take into account.
 
-<a name="Exercise1" />
+<a name="Exercise1"></a>
 ### Exercise 1: Preparing Your SQL Database Account ###
 
 In this exercise, you will connect to your SQL Database account and create a database server, add a new user and then reconnect to SQL Database so that you can begin working with your new database.
 
-<a name="Ex1Task1" />
+<a name="Ex1Task1"></a>
 #### Task 1 - Retrieving your SQL Database Server Name ####
 In this task, you will log into the SQL Database portal to obtain the name of the SQL Database server assigned to your account.
 
@@ -157,12 +157,12 @@ In this task, you will log into the SQL Database portal to obtain the name of th
 
 	You now have a database server created and ready for the next steps in this lab. This database can be connected to from anywhere in the world.
 
-<a name="Exercise2" />
+<a name="Exercise2"></a>
 ### Exercise 2: Working with Data Basic DDL and DML ###
 
 In this exercise, you will create a new database and work with its data. This means you will create some tables, index those tables appropriately, and then insert and query data. For this purpose, you will use two different tools. The first tool, the Database Manager for SQL Azure, is a browser based Silverlight database administration tool that you can access from the Windows Azure portal. The other tool is SQL Server Management Studio, a tool normally associated with SQL Server management. You will see that this tool is equally useful for managing your SQL Databases.
 
-<a name="Ex2Task1" />
+<a name="Ex2Task1"></a>
 #### Task 1 - Creating a New Database ####
 
 1. In the Windows Azure Management portal UI, select **New** from the bottom pane, **SQL Database** | **Custom Create**.
@@ -183,7 +183,7 @@ In this exercise, you will create a new database and work with its data. This me
 	>
 	>Once a database reaches its maximum size, you cannot insert additional data until you delete some data to free storage space or increase its maximum size.
 
-<a name="Ex2Task2" />
+<a name="Ex2Task2"></a>
 #### Task 2 - Managing your Database with the Database Manager for SQL Azure ####
 
 In this task, you use the Database Manager for SQL Azure, a Silverlight client that runs in your browser, to connect to your SQL Database, create and populate a table, and then query its contents.
@@ -269,7 +269,7 @@ In this task, you use the Database Manager for SQL Azure, a Silverlight client t
 
 	_Querying the database_
 
-<a name="Ex2Task3" />
+<a name="Ex2Task3"></a>
 #### Task 3 - Managing your Database with SQL Server Management Studio ####
 In this task, you use SQL Server Management Studio, a tool typically used for managing SQL Server, to connect to your SQL Database server and administer it.
 
@@ -322,7 +322,7 @@ In this task, you use SQL Server Management Studio, a tool typically used for ma
 
 1. Do not close the query window. You will need it during the next task.
 
-<a name="Ex2Task4" />
+<a name="Ex2Task4"></a>
 #### Task 4 - Creating Logins and Database Users ####
 Much like SQL Server, SQL Database allows you to create additional logins and then assign those logins as users with permissions on a database. In this task, you will create a new login and then create a user that uses the new login in your _HoLTestDB_ database.
 
@@ -384,7 +384,7 @@ Much like SQL Server, SQL Database allows you to create additional logins and th
 	
 	>**Note:** You are now connected to the database as the _HoLUser_ database user. You will continue with this user for the remaining steps of this exercise.
 
-<a name="Ex2Task5" />
+<a name="Ex2Task5"></a>
 #### Task 5 - Creating Tables, Indices, and Queries ####
 1. In the query window, replace the current content with the following SQL query to create a _Contact_ table and execute it.
 	
@@ -487,14 +487,14 @@ Much like SQL Server, SQL Database allows you to create additional logins and th
 
 	_Showing the query execution plan graphically_
 
-<a name="Exercise3" />
+<a name="Exercise3"></a>
 ### Exercise 3: Build a Windows Azure Application that Accesses SQL Database ###
 
 In this exercise, you will create a simple Windows Azure application to manipulate the data in the _Customer_ table of the _AdventureWorksLT2008_ database.
 
 The purpose of this exercise is to demonstrate just how simple it is to work with SQL Database and Windows Azure using the graphical Visual Studio 'drag and drop' approach.
 
-<a name="Ex3Task1" />
+<a name="Ex3Task1"></a>
 #### Task 1 - Loading the Sample Database into SQL Database ####
 
 1. Connect to the _HoLTestDB_ database on your SQL Database server using the _HoLUser_ login that you created in the previous exercises. You can use either SQL Server Management Studio or the Database Manager for SQL Azure to perform these steps.
@@ -504,7 +504,7 @@ The purpose of this exercise is to demonstrate just how simple it is to work wit
 
 1. Execute the query. This may take a few minutes, as you are creating a subset of the Adventure Works database.
 
-<a name="Ex3Task2" />
+<a name="Ex3Task2"></a>
 #### Task 2 - Creating the Visual Studio Project ####
 In this task, you create a new Visual Studio project for a Windows Azure Web Site. 
 
@@ -616,14 +616,14 @@ In this task, you create a new Visual Studio project for a Windows Azure Web Sit
 
 1. Close the browser window.
 
-<a name="Exercise4" />
+<a name="Exercise4"></a>
 ### Exercise 4: Connecting via Client Libraries ###
 
 In this exercise, you will learn how to use ADO.NET, ODBC, OLEDB and LINQ to SQL technologies to connect to your SQL Database and perform some simple T-SQL operations. In addition, you will see how to connect to the database from other technologies like Java and PHP.
 
 Using Microsoft Technologies, you will see that the way in which you interact with your SQL Database from your applications is the same as a traditional SQL database. The main differences between the technologies lie in the type of connection and the connection strings used to connect to SQL Database. After the connection is established, you can then use the appropriate inheritor of the ‘DbCommand’ to issue your commands to SQL Database.
 
-<a name="Ex4Task1" />
+<a name="Ex4Task1"></a>
 #### Task 1 - Opening the Begin Solution and Exploring the Common Functionalities ####
 
 You will test the different Microsoft technologies connecting to SQL Database and performing some tasks against a new table. To avoid spending time implementing logic that creates, inserts, queries and deletes a table, this exercise provides a begin solution that implements these common functionalities. This allows you to focus on learning how to connect to SQL Database and explore the differences between the proposed technologies. 
@@ -654,7 +654,7 @@ In this task, you will open the **ConnectDemoApp** solution and explore the **SQ
 
 	Notice that you will only have to override the **CreateConnection** and **CreateCommand** methods on the implementation of each technology to create a connection to SQL Database successfully.
 
-<a name="Ex4Task2" />
+<a name="Ex4Task2"></a>
 #### Task 2 - Connecting to SQL Database Using ADO.NET ####
 In this task, you will create a class that inherits from the **SQLDatabaseConnectionDemo** class and implements the methods to connect to SQL Database using ADO.NET.
 
@@ -755,7 +755,7 @@ In this task, you will create a class that inherits from the **SQLDatabaseConnec
 
 	_Expected output from the ADO.NET connection demo_
 
-<a name="Ex4Task3" />
+<a name="Ex4Task3"></a>
 #### Task 3 - Connecting to SQL Database Using ODBC ####
 In this task, you will create a class that inherits from the **SQLDatabaseConnectionDemo** class and implement the methods for connecting to SQL Database using ODBC.
 
@@ -855,7 +855,7 @@ In this task, you will create a class that inherits from the **SQLDatabaseConnec
 
 	_Expected output from the ODBC connection demo_
 
-<a name="Ex4Task4" />
+<a name="Ex4Task4"></a>
 #### Task 4 - Connecting to SQL Database Using OLEDB ####
 
 In this task, you will create a class that inherits from the **SQLDatabaseConnectionDemo** class and implements the methods for connecting to SQL Database using OLEDB.
@@ -956,7 +956,7 @@ In this task, you will create a class that inherits from the **SQLDatabaseConnec
 
 	_Expected output from the OLEDB connection demo_
 
-<a name="Ex4Task5" />
+<a name="Ex4Task5"></a>
 #### Task 5 - Connecting to SQL Database Using Entity Framework ####
 You have connected in three different ways to the database on SQL Database. The last technology that you are going to try will be **Entity Framework**. You will notice that the class implementation for this demo will not inherit from the **SQLDatabaseConnectionDemo** class because when using **Entity Framework**, you do not have to manage Connections and Commands; those are administered by the underlying technology and you do not have to worry about them.
 
@@ -1055,7 +1055,7 @@ You have connected in three different ways to the database on SQL Database. The 
 
 	_Expected output from the EF connection demo_
 
-<a name="Ex4Task6" />
+<a name="Ex4Task6"></a>
 #### Task 6 - Connecting to SQL Database via Non-Microsoft Technologies ####
 
 It is trivial to connect to SQL Database using non-windows technologies.
@@ -1112,7 +1112,7 @@ sqlConn.close();
 
 ---
 
-<a name="Summary" />
+<a name="Summary"></a>
 ## Summary ##
 
 In this lab, you have looked at the basics of working with SQL Database. If you have any SQL Server experience, you may have found the lab familiar and that is, indeed, the point. Working with SQL Database should be very familiar to anyone who has worked with SQL Server.
