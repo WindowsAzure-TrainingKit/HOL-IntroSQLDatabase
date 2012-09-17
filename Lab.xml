@@ -12,7 +12,7 @@
   <Description>In this hands-on lab you will walk through a series of simple use cases for Windows Azure SQL Database such as: managing logins, creating database objects and query your database.</Description>
   <Document ConversionType="Html">.\HOL.md</Document>  
   <Title>Introduction to Windows Azure SQL Database</Title>
-  <Version>3.1.0</Version>
+  <Version>3.1.1</Version>
   <Source>.\source</Source>
   <DependencyChecker>.\source\Setup\Dependencies.depi</DependencyChecker>
   <CustomProperties>    
