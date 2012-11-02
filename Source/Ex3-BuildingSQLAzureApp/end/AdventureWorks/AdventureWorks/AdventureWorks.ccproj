@@ -4,8 +4,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>1.7</ProductVersion>
-    <ProjectGuid>{435da072-b4cf-4490-bc5b-f81a1334bb79}</ProjectGuid>
+    <ProductVersion>1.8</ProductVersion>
+    <ProjectGuid>{6e3c657a-aba6-4120-9878-f46b5e56feaa}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AdventureWorks</RootNamespace>
@@ -33,23 +33,24 @@
   </PropertyGroup>
   <!-- Items for the project -->
   <ItemGroup>
-    <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
     <ServiceDefinition Include="ServiceDefinition.csdef" />
     <ServiceConfiguration Include="ServiceConfiguration.Local.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdventureWorksWeb\AdventureWorksWeb.csproj">
       <Name>AdventureWorksWeb</Name>
-      <Project>{db547000-81f0-44db-965e-ad3b01fa9119}</Project>
+      <Project>{97b5df4a-e859-49ea-90b9-c7e74f2b2a8a}</Project>
       <Private>True</Private>
       <RoleType>Web</RoleType>
       <RoleName>AdventureWorksWeb</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <CloudExtensionsDir Condition=" '$(CloudExtensionsDir)' == '' ">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Windows Azure Tools\1.7\</CloudExtensionsDir>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <CloudExtensionsDir Condition=" '$(CloudExtensionsDir)' == '' ">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Windows Azure Tools\1.8\</CloudExtensionsDir>
   </PropertyGroup>
   <Import Project="$(CloudExtensionsDir)Microsoft.WindowsAzure.targets" />
 </Project>
