@@ -30,7 +30,7 @@ namespace ConnectDemoApp
         /// Splits a fully qualified domain name datasource the following format
         /// servername.path.to.server;
         /// </summary>
-        /// <param name="dataSource">The fully qualified domain name of your SQL Azure server</param>
+        /// <param name="dataSource">The fully qualified domain name of your SQL Database server</param>
         /// <returns>servername</returns>
         protected string GetServerName(string dataSource)
         {
